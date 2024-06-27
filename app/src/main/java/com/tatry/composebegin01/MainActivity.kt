@@ -5,14 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -26,48 +31,44 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ComposeBegin01Theme {
-                Paper()
+                Task()
             }
         }
     }
 }
 
 @Composable
-fun Paper(modifier: Modifier = Modifier) {
-    Column(modifier) {
-        Image(
-            modifier = Modifier
-                .fillMaxWidth(),
-            painter = painterResource(id = R.drawable.bg_compose_background),
-            contentDescription = null
-        )
-
-        Text(
-            text = stringResource(R.string.paper_title),
-            fontSize = 24.sp,
-            modifier = Modifier.padding(
-                start = 16.dp,
-                end = 16.dp,
-                top = 16.dp,
-                bottom = 16.dp
+fun Task(modifier: Modifier = Modifier) {
+    Box(
+        modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                painter = painterResource(id = R.drawable.ic_task_completed),
+                contentDescription = null
             )
-        )
 
-        Text(
-            text = stringResource(R.string.part1),
-            modifier = Modifier
-                .padding(start = 16.dp, end = 16.dp),
-            textAlign = TextAlign.Justify,
-            fontSize = TextUnit.Unspecified
-        )
+            Text(
+                text = stringResource(R.string.all_tasks_completed),
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(
+                    top = 24.dp,
+                    bottom = 8.dp
+                )
+            )
 
-        Text(
-            text = stringResource(R.string.part2),
-            fontSize = TextUnit.Unspecified,
-            modifier = Modifier.padding(16.dp),
-            textAlign = TextAlign.Justify
-        )
+            Text(
+                text = stringResource(R.string.nice_work),
+                fontSize = 16.sp
+            )
+        }
     }
+
 
 }
 
@@ -78,6 +79,6 @@ fun Paper(modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ComposeBegin01Theme {
-        Paper()
+        Task()
     }
 }
